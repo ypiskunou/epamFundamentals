@@ -62,7 +62,7 @@ public class LinearProgramming {
                 swapIntegersDecimals(),
                 getTimeHmsOutOfSeconds(7265),
                 isPointInRegion(new Point(5,1))?"":"not",
-                tellIfTriangleOnAngles(125,65),
+                checkIfTriangleOnAngles(125,65),
                 max(min(a, b), min(c, d)),
                 isPointsOnLine(new Point(1,2), new Point(5,1), new Point(2,3))?"":"not",
                 isBrickInPattern(new Brick(7,2,4),
@@ -133,7 +133,7 @@ public class LinearProgramming {
     //endregion
 
     //region if/else
-    private static String tellIfTriangleOnAngles(int a, int b) {
+    private static String checkIfTriangleOnAngles(int a, int b) {
         StringBuilder result = new StringBuilder();
         if (a + b < 180) {
             result.append("It is a triangle. ");
