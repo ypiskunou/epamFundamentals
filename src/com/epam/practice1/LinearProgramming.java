@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.*;
 import java.util.List;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -24,7 +23,6 @@ public class LinearProgramming {
 
     private static double x;
     private static double y;
-    private static double z;
 
     static  {
         a = 3;
@@ -33,7 +31,6 @@ public class LinearProgramming {
         d = 1;
         x = 7;
         y = 2;
-        z = 4;
     }
 
     public static void main(String[] args) throws IOException {
@@ -58,7 +55,7 @@ public class LinearProgramming {
                         "5. Sum of 1/2^k+1/3^k with constraint e = 0.00045, n = 45: %.2f\n" +
                         "6. Table of ASCII: \n%s\n" +
                         "7. Table of dividers. %s\n" +
-                        "8. Numbers set of 12345 3155: %s",
+                        "8. Set of the same numbers at 1234577 31556: %s",
                 function1(),
                 function2(),
                 function3(),
@@ -283,11 +280,11 @@ public class LinearProgramming {
                 .toArray(Character[]::new);
 
         List<Character> firstUniques = Arrays.asList(firstSequence).stream()
-                .filter(i-> Collections.frequency(Arrays.asList(firstSequence), i) < 2)
+                .distinct()
                 .collect(Collectors.toList());
 
         List<Character> secondUniques = Arrays.asList(secondSequence).stream()
-                .filter(i-> Collections.frequency(Arrays.asList(secondSequence), i) < 2)
+                .distinct()
                 .collect(Collectors.toList());
 
         List<Character> commonList = new ArrayList<>();
@@ -296,12 +293,14 @@ public class LinearProgramming {
 
         List<Character> sameNumbers = commonList.stream()
                 .filter(i->Collections.frequency(commonList, i) > 1)
+                .distinct()
                 .collect(Collectors.toList());
         return sameNumbers.toString();
     }
 
     //endregion
 }
+
 
 class Rectangle{
     int xLeft;
