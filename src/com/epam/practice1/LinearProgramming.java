@@ -1,10 +1,18 @@
 package com.epam.practice1;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.time.Duration;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
@@ -28,7 +36,7 @@ public class LinearProgramming {
         z = 4;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.printf("\n/*************** linear ****************/\n" +
                         "1. z= %.0f\n" +
                         "2. expression equals %.2f\n" +
@@ -38,12 +46,19 @@ public class LinearProgramming {
                         "6. Point (5,1) is %s in the region\n" +
                         "\n/*************** if/else ****************/\n" +
                         "1. %s\n" +
-                        "2. max out of min: %.2f\n" +
+                        "2. max out of mins: %.2f\n" +
                         "3. Points A(1,2), B(5,1) and C(2,3) are %s at the same line\n" +
                         "4. Given brick 7x2x4 does %s fits hole of 3x4\n" +
                         "5. Calculated expression is: %.4f\n" +
                         "\n/*************** loops ****************/\n" +
-                        "1. Sum of arithmetic progression: %d\n",
+                        "1. Sum of arithmetic progression: %d\n" +
+                        "2. Value calculated at the interval: y = %s\n" +
+                        "3. Sum of squares from 1 to 100: %d\n" +
+                        "4. Product of squares from 1 to 200: %.0f\n" +
+                        "5. Sum of 1/2^k+1/3^k with constraint e = 0.00045, n = 45: %.2f\n" +
+                        "6. Table of ASCII: \n%s\n" +
+                        "7. Table of dividers. %s\n" +
+                        "8. Numbers set of 12345 3155: %s",
                 function1(),
                 function2(),
                 function3(),
@@ -56,7 +71,14 @@ public class LinearProgramming {
                 isBrickInPattern(new Brick(7,2,4),
                         new Rectangle(3,4))?"":"not",
                 calculateExpression(),
-                sumOfArithmeticProgression());
+                sumOfArithmeticProgression(),
+                getAllValuesWithStep(0.2),
+                sumOfSquaresFor100(),
+                productOfSquaresFor200(),
+                sumWithConstraint(45,0.00045),
+                tableAscii(),
+                getAllDividers(14, 47),
+                setOfNumbers(12345, 3155));
     }
 
     //region linear
@@ -72,21 +94,19 @@ public class LinearProgramming {
         return  (sin(x)+cos(y))/(cos(x)-sin(y))*tan(x*y);
     }
 
-    private static double swapIntegersDecimals(){
+    private static double swapIntegersDecimals() throws IOException {
         String toSwap;
         Matcher matcher;
-        Scanner scanner;
+        BufferedReader br;
         do {
             System.out.println("Enter number in format xxx.yyy to get its reverse...");
-            scanner = new Scanner(System.in);
-            double r = Double.parseDouble(scanner.nextLine());
+            br = new BufferedReader(new InputStreamReader(System.in));
+            double r = Double.parseDouble(br.readLine());
             toSwap = String.valueOf(r);
             String pattern = "^[0-9]{3}\\.[0-9]{3}$";
             Pattern numberPattern = Pattern.compile(pattern);
             matcher = numberPattern.matcher(toSwap);
         } while (!matcher.matches());
-        scanner.reset();
-        scanner.close();
 
         String[] integersDecimals = toSwap.split("\\.");
         StringBuilder decimalsIntegers = new StringBuilder(integersDecimals[1]);
@@ -158,17 +178,126 @@ public class LinearProgramming {
 
     //region loops
 
-    private static int sumOfArithmeticProgression(){
+    private static int sumOfArithmeticProgression() throws IOException {
         int endpoint;
-        Scanner scanner = new Scanner(System.in);;
+        BufferedReader br;
         do {
             System.out.println("Enter positive integer greater than 1: ");
-            endpoint = scanner.nextInt();
-            scanner.reset();
+
+            br = new BufferedReader(new InputStreamReader(System.in));
+            endpoint = Integer.parseInt(br.readLine());
         } while (endpoint < 2);
-        scanner.close();
+        br.close();
 
         return (1+endpoint)*endpoint/2;
+    }
+
+    private static String getAllValuesWithStep(double h){
+        StringBuilder resultArray = new StringBuilder();
+        for(double x=a;x<=b;x+=h){
+            if (x > 2) {
+                resultArray.append(x+"\t");
+            } else {
+                resultArray.append(-x+"\t");
+            }
+        }
+        return resultArray.toString();
+    }
+
+    private static int sumOfSquaresFor100(){
+        int sum = 0;
+        for(int i=1;i<=100;i++)
+            sum+= i*i;
+        return sum;
+    }
+
+    private static BigDecimal productOfSquaresFor200(){
+        BigDecimal product = new BigDecimal(1);
+        for(int i=1;i <= 200;i++)
+            product = product.multiply(new BigDecimal(i*i));
+        return product;
+    }
+
+    private static double sumWithConstraint(int n, double e) {
+        double sum = 0;
+        double temp;
+        for (int i = 1; i <= n; i++) {
+            temp = pow(0.5, -i) + pow(1 / 3.0, -i);
+            if (temp >= e)
+                sum += pow(0.5, -i) + pow(1 / 3.0, -i);
+            else
+                return sum;
+        }
+        return sum;
+    }
+
+    private static String tableAscii(){
+        StringBuilder table = new StringBuilder();
+        for(int k = 0; k<256; k++) {
+            table.append((char) k + "-> " + k + "\t");
+            if(k%16==0)
+                table.append("\n");
+        }
+
+        return table.toString();
+    }
+
+    private static String getAllDividers(int m, int n){
+        StringBuilder header = new StringBuilder("Output of dividers between "+m+" and "+n+"\n");
+        StringBuilder body = new StringBuilder();
+        for(int i = m; i <= n; i++){
+            body.append("For "+i+": ");
+            for(int l:getDividers(i))
+                body.append(l+", ");
+            body.append("\b\b;\n");
+        }
+
+        return header.append(body).toString();
+    }
+
+    private static ArrayList<Integer> getDividers(int d){
+        ArrayList<Integer> dividersList = new ArrayList<>();
+        for(int i = 2; i <= d/2; i++)
+            if(d%i==0)
+                dividersList.add(i);
+
+        return dividersList;
+    }
+
+    private static String setOfNumbers(double p, double q){
+        String temp = String.valueOf(p);
+        String firstNumber = temp.replaceAll("[,.]|0*$","");
+
+        temp = String.valueOf(q);
+        String secondNumber = temp.replaceAll("[,.]|0*$","");
+
+        //char[] firstSequence = firstNumber.toCharArray();
+        //char[] secondSequence = secondNumber.toCharArray();
+
+        Character[] firstSequence = IntStream.range(0, firstNumber.toCharArray().length)
+                .mapToObj(i -> firstNumber.toCharArray()[i])
+                .toArray(Character[]::new);
+
+        Character[] secondSequence = IntStream.range(0, secondNumber.toCharArray().length)
+                .mapToObj(i -> secondNumber.toCharArray()[i])
+                .toArray(Character[]::new);
+
+        List<Character> firstUniques = Arrays.asList(firstSequence).stream()
+                .filter(i-> Collections.frequency(Arrays.asList(firstSequence), i) < 2)
+                .collect(Collectors.toList());
+
+        List<Character> secondUniques = Arrays.asList(secondSequence).stream()
+                .filter(i-> Collections.frequency(Arrays.asList(secondSequence), i) < 2)
+                .collect(Collectors.toList());
+
+        List<Character> commonList = new ArrayList<>();
+        commonList.addAll(firstUniques);
+        commonList.addAll(secondUniques);
+
+        List<Character> sameNumbers = commonList.stream()
+                .filter(i->Collections.frequency(commonList, i) > 1)
+                .collect(Collectors.toList());
+        return sameNumbers.toString();
     }
 
     //endregion
