@@ -268,9 +268,6 @@ public class LinearProgramming {
         temp = String.valueOf(q);
         String secondNumber = temp.replaceAll("[,.]|0*$","");
 
-        //char[] firstSequence = firstNumber.toCharArray();
-        //char[] secondSequence = secondNumber.toCharArray();
-
         Character[] firstSequence = IntStream.range(0, firstNumber.toCharArray().length)
                 .mapToObj(i -> firstNumber.toCharArray()[i])
                 .toArray(Character[]::new);
