@@ -98,8 +98,7 @@ public class LinearProgramming {
         do {
             System.out.println("Enter number in format xxx.yyy to get its reverse...");
             br = new BufferedReader(new InputStreamReader(System.in));
-            double r = Double.parseDouble(br.readLine());
-            toSwap = String.valueOf(r);
+            toSwap = br.readLine();
             String pattern = "^[0-9]{3}\\.[0-9]{3}$";
             Pattern numberPattern = Pattern.compile(pattern);
             matcher = numberPattern.matcher(toSwap);
