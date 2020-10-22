@@ -75,7 +75,7 @@ public class LinearProgramming {
                 sumWithConstraint(45,0.00045),
                 tableAscii(),
                 getAllDividers(14, 47),
-                setOfNumbers(12345, 3155));
+                setOfNumbers(123450, 31550));
     }
 
     //region linear
