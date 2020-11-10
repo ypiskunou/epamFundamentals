@@ -19,6 +19,6 @@ public class Task6 {
                 } else if (i >= j && j >= n - 1 - i)
                     array[i][j] = 1;
 
-        System.out.printf("Resulting matrix: \n%s", Task1.print2dArray(array));
+        System.out.printf("Resulting matrix: \n%s", Task1.stringify2dArray(array));
     }
 }

@@ -36,18 +36,18 @@ public class Task1 {
                 }
             }
 
-        System.out.printf("Original array:\n%s", print2dArray(array));
-        System.out.printf("\nNew array:\n%s", print2dArray(newArray));
+        System.out.printf("Original array:\n%s", stringify2dArray(array));
+        System.out.printf("\nNew array:\n%s", stringify2dArray(newArray));
     }
 
-    public static String print2dArray(int[][] array) {
+    public static String stringify2dArray(int[][] array) {
         StringBuilder matrix = new StringBuilder();
         for (int i = 0; i < array.length; i++)
             matrix.append(Arrays.toString(array[i]) + "\n");
         return matrix.toString();
     }
 
-    public static String print2dArray(double[][] array) {
+    public static String stringify2dArray(double[][] array) {
         StringBuilder matrix = new StringBuilder();
         for (int i = 0; i < array.length; i++)
             matrix.append(Arrays.toString(array[i]) + "\n");

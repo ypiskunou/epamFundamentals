@@ -19,7 +19,7 @@ public class Task7 {
                 if (array[i][j] > 0) positives++;
             }
 
-        System.out.printf("Resulting matrix: \n%s", Task1.print2dArray(array));
+        System.out.printf("Resulting matrix: \n%s", Task1.stringify2dArray(array));
         System.out.printf("\nQuantity of positives: %d", positives);
     }
 }

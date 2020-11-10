@@ -30,7 +30,7 @@ public class Task9 {
             tempSum = 0;
         }
 
-        System.out.printf("Original matrix:\n%s", Task1.print2dArray(array));
+        System.out.printf("Original matrix:\n%s", Task1.stringify2dArray(array));
         System.out.printf("\nMax Sum of elements of column at matrix is %d", maxSum);
     }
 }

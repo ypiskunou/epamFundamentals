@@ -1,6 +1,6 @@
 package com.epam.practice2.Array2D;
 
-import java.util.Arrays;
+import static com.epam.practice2.Array2D.Task1.stringify2dArray;
 
 /**
  * @author Piskunou Yury
@@ -14,16 +14,16 @@ public class Task12 {
         int[][] array = new int[][]{
                 {3, 5, 7, 27},
                 {3, 5, 4, 3},
-                {3, 3, 7, 25},
+                {3, 3, 7, 28},
                 {3, 3, 7, 25}
         };
 
-        System.out.printf("Original array: \n%s", Task1.print2dArray(array));
+        System.out.printf("Original array: \n%s", Task1.stringify2dArray(array));
 
         System.out.println("\nSorted array: ");
         InfoArray infoArray = new InfoArray(array);
         infoArray.sortMatrixOnRows(array);
-        printArrayOnInfoArray(array, infoArray.getReferenceArray());
+        System.out.println(Task1.stringify2dArray(getArrayOnInfoArray(array, infoArray.getReferenceArray())));
     }
 
     private static int[] reverseArray(int[] array) {
@@ -34,16 +34,19 @@ public class Task12 {
         return reversedArray;
     }
 
-    private static void printArrayOnInfoArray(int[][] array, int[] indexArray, boolean decreasing) {
+    static int[][] getArrayOnInfoArray(int[][] array, int[] indexArray, boolean decreasing) {
+        int[][] arrayOnInfoArray = new int[array.length][];
         if (decreasing)
             indexArray = reverseArray(indexArray);
-        for (int anIndexArray : indexArray) System.out.println(Arrays.toString(array[anIndexArray]));
+        for (int i = 0; i < array.length; i++)
+            arrayOnInfoArray[i] = array[indexArray[i]];
+
+        return arrayOnInfoArray;
     }
 
-    private static void printArrayOnInfoArray(int[][] array, int[] indexArray) {
-        printArrayOnInfoArray(array, indexArray, false);
+    static int[][] getArrayOnInfoArray(int[][] array, int[] indexArray) {
+        return getArrayOnInfoArray(array, indexArray, false);
     }
-
 }
 
 class InfoArray {

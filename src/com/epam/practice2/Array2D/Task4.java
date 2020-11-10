@@ -17,6 +17,6 @@ public class Task4 {
                     array[i][j] = j + 1;
                 else array[i][j] = array.length - j;
 
-        System.out.printf("Resulting matrix: \n%s", Task1.print2dArray(array));
+        System.out.printf("Resulting matrix: \n%s", Task1.stringify2dArray(array));
     }
 }

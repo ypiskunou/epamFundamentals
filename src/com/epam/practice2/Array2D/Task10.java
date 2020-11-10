@@ -14,7 +14,7 @@ public class Task10 {
                 {8, 12, 4, 21},
                 {2, 3, 1, 25}
         };
-        System.out.printf("Original array: \n%s", Task1.print2dArray(array));
+        System.out.printf("Original array: \n%s", Task1.stringify2dArray(array));
 
         System.out.println("\nPositive elements at the diagonal: ");
         for (int i = 0; i < array.length; i++)

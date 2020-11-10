@@ -18,7 +18,7 @@ public class Task8 {
                 {8, 12, 4, 21},
                 {2, 3, 1, 25}
         };
-        System.out.printf("Original array: \n%s", Task1.print2dArray(array));
+        System.out.printf("Original array: \n%s", Task1.stringify2dArray(array));
 
         Scanner scanner;
         String input;
@@ -47,6 +47,6 @@ public class Task8 {
             array[i][rightColumn] = temp;
         }
 
-        System.out.printf("\nNew array: \n%s", Task1.print2dArray(array));
+        System.out.printf("\nNew array: \n%s", Task1.stringify2dArray(array));
     }
 }

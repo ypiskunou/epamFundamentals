@@ -25,6 +25,6 @@ public class Task11 {
                 System.out.print(i+1 + " ");
         }
 
-        System.out.printf("\nThe original array: \n%s", Task1.print2dArray(array));
+        System.out.printf("\nThe original array: \n%s", Task1.stringify2dArray(array));
     }
 }
