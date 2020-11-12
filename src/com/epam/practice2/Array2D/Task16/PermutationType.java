@@ -1,44 +1,44 @@
 package com.epam.practice2.Array2D.Task16;
 
 public class PermutationType {
-    private boolean a;
-    private boolean b;
-    private boolean c;
+    private boolean centralSymmetricPermutation;
+    private boolean horizontalSymmetricPermutation;
+    private boolean verticalSymmetricPermutation;
 
-    public boolean isAny() {
-        return any;
+    public boolean isAnySymmetricPermutation() {
+        return anySymmetricPermutation;
     }
 
-    private boolean any = false;
+    private boolean anySymmetricPermutation = false;
 
-    public boolean isA() {
-        return a;
+    public boolean isCentralSymmetricPermutation() {
+        return centralSymmetricPermutation;
     }
 
-    public void setA(boolean a) {
-        this.a = a;
-        any = true;
+    public void setCentralSymmetricPermutation(boolean centralSymmetricPermutation) {
+        this.centralSymmetricPermutation = centralSymmetricPermutation;
+        anySymmetricPermutation = true;
     }
 
-    public boolean isB() {
-        return b;
+    public boolean isHorizontalSymmetricPermutation() {
+        return horizontalSymmetricPermutation;
     }
 
-    public void setB(boolean b) {
-        this.b = b;
-        any = true;
+    public void setHorizontalSymmetricPermutation(boolean horizontalSymmetricPermutation) {
+        this.horizontalSymmetricPermutation = horizontalSymmetricPermutation;
+        anySymmetricPermutation = true;
     }
 
-    public boolean isC() {
-        return c;
+    public boolean isVerticalSymmetricPermutation() {
+        return verticalSymmetricPermutation;
     }
 
-    public void setC(boolean c) {
-        this.c = c;
-        any = true;
+    public void setVerticalSymmetricPermutation(boolean verticalSymmetricPermutation) {
+        this.verticalSymmetricPermutation = verticalSymmetricPermutation;
+        anySymmetricPermutation = true;
     }
 
-    public PermutationType() {
-        a = b = c = false;
+    PermutationType() {
+        centralSymmetricPermutation = horizontalSymmetricPermutation = verticalSymmetricPermutation = false;
     }
 }
