@@ -35,8 +35,8 @@ public class EvenMagicSquare extends MagicSquare {
     private void getAdresses4x() {
         int counter = 0;
         int start = 1;
-        int[] rowCounter = new int[n];
-        int[] columnCounter = new int[n];
+        int[] rowCounter = new int[m];
+        int[] columnCounter = new int[m];
         for (int j = 0; j < m; j++, counter = 0) {
             for (int i = (start + j)%m; counter < k; i++, counter++) {
                 int t = i%m;
