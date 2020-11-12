@@ -8,3 +8,4 @@
 *.class
 out
 gen
+/src/com/epam/practice2/Array2D/testik.java

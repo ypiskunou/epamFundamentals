@@ -19,11 +19,22 @@ public class MagicSquare {
 
     protected int[][] magicSquare; // get result from here whether it's odd or even
 
+    protected int p;
+    protected int q;
+
     int n;
 
     public MagicSquare(int n) {
         this.n = n;
         magicSquare = new int[n][n];
+    }
+
+    protected void equivalentMoveLeft() {
+        q = (n + q) % n;
+    }
+
+    protected void equivalentMoveDown() {
+        p = n - (n - p) % n;
     }
 
     public int sum() {

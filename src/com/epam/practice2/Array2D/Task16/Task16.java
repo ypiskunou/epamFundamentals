@@ -31,7 +31,7 @@ public class Task16 {
         else
             magicSquare = new OddMagicSquare(n);
 
-        System.out.printf("Resulting matrix: \n%s", Task1.stringify2dArray(magicSquare.magicSquare));
+        System.out.printf("Magic square: \n%s", Task1.stringify2dArray(magicSquare.magicSquare));
 
         //EvenMagicSquare magicSquare = new EvenMagicSquare(4);
     }

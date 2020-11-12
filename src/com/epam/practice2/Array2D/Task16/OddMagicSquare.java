@@ -2,8 +2,8 @@ package com.epam.practice2.Array2D.Task16;
 
 public class OddMagicSquare extends MagicSquare {
 
-    private int p;
-    private int q;
+//    private int p;
+//    private int q;
 
     public OddMagicSquare(int n) {
         super(n);
@@ -21,7 +21,7 @@ public class OddMagicSquare extends MagicSquare {
     }
 
     private boolean diagonalMove(int i) {
-        if (!isInArrayColumnBounds(p) || !isInArrayRowBounds(q) || magicSquare[p][q] != 0)
+        if (isNotInArrayColumnBounds(p) || isNotInArrayRowBounds(q) || magicSquare[p][q] != 0)
             return false;
         magicSquare[p][q] = i;
         return true;
@@ -31,11 +31,11 @@ public class OddMagicSquare extends MagicSquare {
         int prevP = p;
         int prevQ = q;
         boolean equivalentStep = false;
-        if (!isInArrayColumnBounds(p)) {
+        if (isNotInArrayColumnBounds(p)) {
             equivalentMoveDown();
             equivalentStep = true;
         }
-        if (!isInArrayRowBounds(q)) {
+        if (isNotInArrayRowBounds(q)) {
             equivalentMoveLeft();
             equivalentStep = true;
         }
@@ -57,19 +57,19 @@ public class OddMagicSquare extends MagicSquare {
         magicSquare[p][q] = i;
     }
 
-    private void equivalentMoveLeft() {
-        q = (n + q) % n;
+//    private void equivalentMoveLeft() {
+//        q = (n + q) % n;
+//    }
+//
+//    private void equivalentMoveDown() {
+//        p = n - (n - p) % n;
+//    }
+
+    private boolean isNotInArrayColumnBounds(int p) {
+        return p <= -1 || p >= n;
     }
 
-    private void equivalentMoveDown() {
-        p = n - (n - p) % n;
-    }
-
-    private boolean isInArrayColumnBounds(int p) {
-        return p > -1 && p < n;
-    }
-
-    private boolean isInArrayRowBounds(int q) {
-        return q > -1 && q < n;
+    private boolean isNotInArrayRowBounds(int q) {
+        return q <= -1 || q >= n;
     }
 }

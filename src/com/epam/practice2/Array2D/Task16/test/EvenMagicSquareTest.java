@@ -26,27 +26,34 @@ public class EvenMagicSquareTest {
             {13, 14, 15, 16},
     };
 
-    @Test
-    public void swapCentralSymetric() {
-        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(array.length);
-        evenMagicSquare.swapCentralSymetric(new int[]{2, 14});
-
-        Assert.assertArrayEquals(array, evenMagicSquare.getMagicSquare());
-    }
-
-    @Test
-    public void swapCentralRowSymetric() {
-        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(arrayRow.length);
-        evenMagicSquare.swapCentralRowSymetric(new int[]{6});
-
-        Assert.assertArrayEquals(arrayRow, evenMagicSquare.getMagicSquare());
-    }
+//    @Test
+//    public void swapCentralSymetric() {
+//        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(array.length);
+//        evenMagicSquare.swapCentralSymetric(new int[]{2, 14});
+//
+//        Assert.assertArrayEquals(array, evenMagicSquare.getMagicSquare());
+//    }
 
     @Test
-    public void swapCentralColumnSymetric() {
-        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(arrayColumn.length);
-        evenMagicSquare.swapCentralColumnSymetric(new int[]{10});
-
-        Assert.assertArrayEquals(arrayColumn, evenMagicSquare.getMagicSquare());
+    public void isMagicSquare() {
+        int n = 8;
+        MagicSquare magicSquare = new EvenMagicSquare(n);
+        Assert.assertEquals(true, magicSquare.isMagicSquare());
     }
+
+//    @Test
+//    public void swapCentralRowSymetric() {
+//        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(arrayRow.length);
+//        evenMagicSquare.swapCentralRowSymetric(new int[]{6});
+//
+//        Assert.assertArrayEquals(arrayRow, evenMagicSquare.getMagicSquare());
+//    }
+//
+//    @Test
+//    public void swapCentralColumnSymetric() {
+//        EvenMagicSquare evenMagicSquare = new EvenMagicSquare(arrayColumn.length);
+//        evenMagicSquare.swapCentralColumnSymetric(new int[]{10});
+//
+//        Assert.assertArrayEquals(arrayColumn, evenMagicSquare.getMagicSquare());
+//    }
 }

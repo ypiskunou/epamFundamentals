@@ -2,49 +2,83 @@ package com.epam.practice2.Array2D.Task16;
 
 public class EvenMagicSquare extends MagicSquare {
 
+    private PermutationType[][] permutationTypes;
+    private int k;
+    private int m;
+
     public EvenMagicSquare(int n) {
         super(n);
+        permutationTypes = new PermutationType[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                magicSquare[i][j] = i * n + j + 1;
+                permutationTypes[i][j] = new PermutationType();
+            }
+
+        m = n / 2;
+        if (n % 4 == 0) {
+            k = m / 2;
+            getAdresses4x();
+        } else {
+            k = (m - 1) / 2;
+            getAdresses2x();
+        }
+
+        buildMagicSquare();
+        visualizePermutationArrayUpperHalf();
+    }
+
+    private void buildMagicSquare() {
+        swapCentralSymetric();
+    }
+
+    private void getAdresses4x() {
+        int counter = 0;
+        int start = 1;
+        int[] rowCounter = new int[n];
+        int[] columnCounter = new int[n];
+        for (int j = 0; j < m; j++, counter = 0) {
+            for (int i = (start + j)%m; counter < k; i++, counter++) {
+                int t = i%m;
+                if (rowCounter[t] < k && columnCounter[j] < k)
+                    permutationTypes[t][j].setA(true);
+                rowCounter[t]++;
+                columnCounter[j]++;
+            }
+        }
+        completeByVerticalymetry();
+    }
+
+    private void visualizePermutationArrayUpperHalf() {
+        for (int i = 0; i < n/2; i++) {
+            for (int j = 0; j < n; j++)
+                if (permutationTypes[i][j].isA())
+                    System.out.print("*");
+                else System.out.print("_");
+            System.out.println("\n");
+        }
+    }
+
+    private void getAdresses2x() {
+
+    }
+
+    private void completeByVerticalymetry() {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
-                magicSquare[i][j] = i * n + j + 1;
+                if (permutationTypes[i][j].isAny())
+                    permutationTypes[i][n - 1 - j] = permutationTypes[i][j];
     }
 
-    public void swapCentralSymetric(int[] adresses) {
+    private void swapCentralSymetric() {
         int temp;
-        int i;
-        int j;
-        for (int adress : adresses) {
-            j = adress % n;
-            i = (adress - j) / n;
-            temp = magicSquare[i][j];
-            magicSquare[i][j] = magicSquare[n - 1 - i][n - 1 - j];
-            magicSquare[n - 1 - i][n - 1 - j] = temp;
-        }
-    }
-
-    public void swapCentralRowSymetric(int[] adresses) {
-        int temp;
-        int i;
-        int j;
-        for (int adress : adresses) {
-            j = adress % n;
-            i = (adress - j) / n;
-            temp = magicSquare[i][j];
-            magicSquare[i][j] = magicSquare[n - 1 - i][j];
-            magicSquare[n - 1 - i][j] = temp;
-        }
-    }
-
-    public void swapCentralColumnSymetric(int[] adresses) {
-        int temp;
-        int i;
-        int j;
-        for (int adress : adresses) {
-            j = adress % n;
-            i = (adress - j) / n;
-            temp = magicSquare[i][j];
-            magicSquare[i][j] = magicSquare[i][n - 1 - j];
-            magicSquare[i][n - 1 - j] = temp;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++)
+                if (permutationTypes[i][j].isA()) {
+                    temp = magicSquare[i][j];
+                    magicSquare[i][j] = magicSquare[n - 1 - i][n - 1 - j];
+                    magicSquare[n - 1 - i][n - 1 - j] = temp;
+                }
         }
     }
 }
