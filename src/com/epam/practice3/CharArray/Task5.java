@@ -24,15 +24,19 @@ public class Task5 {
 
         int count = 0;
         int i = 0;
+        int j = 0;
         int upperBound = s.length() - 1;
         while (sChars[i] == ' ')
             i++;
         while (sChars[upperBound] == ' ')
             upperBound--;
-        if (i == 0) i++;
+        if (i == 0) {
+            temp[j++] = sChars[i++];
+            count++;
+        }
         Pattern pattern = Pattern.compile("\\p{Punct}");
 
-        for (int j = 0; i <= upperBound; i++) {
+        for (; i <= upperBound; i++) {
             if (sChars[i - 1] == ' ' && sChars[i] == ' ')
                 continue;
             String source = new String(new char[]{sChars[i]});
@@ -50,7 +54,7 @@ public class Task5 {
         }
 
         char[] result = new char[count];
-        for (int j = 0; j < count; j++)
+        for (j = 0; j < count; j++)
             result[j] = temp[j];
 
         return new String(result);
