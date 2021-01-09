@@ -22,7 +22,6 @@ public class Task5 {
         char[] sChars = s.toCharArray();
         char[] temp = new char[s.length()];
 
-        int count = 0;
         int i = 0;
         int j = 0;
         int upperBound = s.length() - 1;
@@ -30,10 +29,8 @@ public class Task5 {
             i++;
         while (sChars[upperBound] == ' ')
             upperBound--;
-        if (i == 0) {
+        if (i == 0)
             temp[j++] = sChars[i++];
-            count++;
-        }
         Pattern pattern = Pattern.compile("\\p{Punct}");
 
         for (; i <= upperBound; i++) {
@@ -45,17 +42,15 @@ public class Task5 {
                 swap(temp, j - 1, j);
                 swap(sChars, i - 1, i);
                 j++;
-                count++;
                 continue;
             }
 
             temp[j++] = sChars[i];
-            count++;
         }
 
-        char[] result = new char[count];
-        for (j = 0; j < count; j++)
-            result[j] = temp[j];
+        char[] result = new char[j];
+        for (int k = 0; k < j; k++)
+            result[k] = temp[k];
 
         return new String(result);
     }
