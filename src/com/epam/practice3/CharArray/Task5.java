@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @since 07.01.21
  */
 public class Task5 {
-    private static String text = " It's  one    small space  for a  man ,  but large       space  for a  mankind.  ";
+    private static String text = " One  small space    for a  man ,  one giant        space  for   a  mankind.  ";
 
     public static void main(String[] args) {
 
