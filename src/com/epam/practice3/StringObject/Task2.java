@@ -1,7 +1,5 @@
 package com.epam.practice3.StringObject;
 
-import java.util.Arrays;
-
 /**
  * @author Piskunou Yury
  * @my.task 2. В строке вставить после каждого символа 'a' символ 'b'.
