@@ -10,7 +10,6 @@ public class Task3 {
     private static String word = "madams";
 
     public static void main(String[] args) {
-        //System.out.println("The word " + word + " is " + (isPolindrom(word) ? "" : "not ") + "a polindrom.");
         System.out.printf("The word %s is %sa polindrom", word, (isPolindrom(word) ? "" : "not "));
     }
 
