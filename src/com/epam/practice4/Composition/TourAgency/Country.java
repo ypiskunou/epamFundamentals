@@ -1,9 +1,5 @@
 package com.epam.practice4.Composition.TourAgency;
 
-import sun.rmi.transport.Transport;
-
-import java.util.Map;
-
 public enum Country implements PayableOption{
 
     LATVIA,
