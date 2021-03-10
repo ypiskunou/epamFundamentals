@@ -162,7 +162,7 @@ class compareOnLetterQty implements Comparator<String> {
     public int compare(String a, String b) {
         if (countLetterInWord(a) - countLetterInWord(b) < 0)
             return -1;
-        if (countLetterInWord(a) == countLetterInWord(b))
+        else if (countLetterInWord(a) == countLetterInWord(b))
             return 0;
         return 1;
     }
